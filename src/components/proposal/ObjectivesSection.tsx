@@ -45,7 +45,7 @@ export default function ObjectivesSection() {
   }
 
   return (
-    <div className="p-4 border rounded-lg shadow-sm">
+    <div className="p-4 border rounded-lg shadow-xs">
       <h2 className="text-xl font-bold mb-4">Project Objectives</h2>
 
       <TextareaInput
@@ -58,13 +58,13 @@ export default function ObjectivesSection() {
       <button
         onClick={handleGenerateObjectives}
         disabled={isLoading}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400"
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-700 disabled:bg-gray-400"
       >
         {isLoading ? "Generating..." : "Generate Objectives Section"}
       </button>
 
       {apiResponse && (
-        <div className="mt-6 p-4 border rounded bg-gray-50">
+        <div className="mt-6 p-4 border rounded-sm bg-gray-50">
           <h3 className="font-semibold mb-2">Generated Objectives:</h3>
           <div className="whitespace-pre-wrap">{apiResponse}</div>
         </div>
