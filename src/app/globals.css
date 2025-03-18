@@ -1,6 +1,19 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
+  --font-inter: var(--font-inter), serif;
+  --font-cal: var(--font-cal), serif;
+
+  --color-level-0: #fefcfb;
+  --color-level-1: #e6e8e980;
+  --color-level-2: #d8dbdb80;
+  --color-level-3: #cbcdce80;
+  --color-level-4: #bec0c080;
+  --color-level-5: #b1b3b380;
+  --color-on-level-0: #435358;
+  --color-accent: #2bc2c2;
+  --color-on-accent: #121212;
+
   --width-a4: 210mm;
 }
 
@@ -13,11 +26,26 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  body {
+    @apply bg-level-0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-cal text-on-level-0;
+  }
+
+  p,
+  span,
+  label,
+  input,
+  a,
+  select,
+  button {
+    @apply font-inter text-on-level-0;
   }
 }

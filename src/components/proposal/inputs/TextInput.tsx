@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface TextInputProps {
-  title: string; //This need to be fixed - title won't be always provided to be used as id
+  title: string;
   label: string;
   inputValue: string;
   onChange: (value: string) => void;
@@ -21,13 +21,10 @@ export default function TextInput({
   const titleId = `${id}-label`;
 
   return (
-    <div className="flex flex-col" role="group" aria-labelledby={titleId}>
-      <Label htmlFor={id} id={titleId}>
-        {label}
-      </Label>
+    <div className="flex flex-col gap-2">
+      <Label htmlFor={titleId}>{label}</Label>
       <Input
-        type="text"
-        id={id}
+        id={titleId}
         value={inputValue}
         onChange={(e) => onChange(e.target.value)}
         placeholder={inputValue || defaultValue}
