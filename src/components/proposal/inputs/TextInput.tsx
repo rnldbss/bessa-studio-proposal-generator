@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface TextInputProps {
-  title: string; //This need to be fixed - title won't be always provided
+  title: string; //This need to be fixed - title won't be always provided to be used as id
   label: string;
   inputValue: string;
   onChange: (value: string) => void;
