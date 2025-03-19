@@ -4,7 +4,7 @@ import TextInput from "./TextInput";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 
-interface EditableHeadingProps {
+interface EditableTextProps {
   value: string;
   defaultValue: string;
   as?: "h1" | "h2" | "h3" | "span" | "p";
@@ -19,7 +19,7 @@ interface EditableHeadingProps {
 }
 
 // FIX: Tab navigation is inexistent at the moment
-export default function EditableHeading({
+export default function EditableText({
   value,
   defaultValue,
   as: Heading = "h1",
@@ -31,7 +31,7 @@ export default function EditableHeading({
   onChange,
   onSave,
   onCancel,
-}: EditableHeadingProps) {
+}: EditableTextProps) {
   return (
     <div
       className={`px-1 py-0.5 rounded-sm group ${

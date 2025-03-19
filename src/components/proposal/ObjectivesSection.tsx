@@ -3,6 +3,7 @@
 import { useState } from "react";
 //import InputDisplay from "./inputs/InputDisplay";
 import TextareaInput from "./inputs/TextareaInput";
+import { Button } from "../ui/button";
 
 export default function ObjectivesSection() {
   const [proposalObjectives, setProposalObjectives] = useState("");
@@ -45,8 +46,8 @@ export default function ObjectivesSection() {
   }
 
   return (
-    <div className="p-4 border rounded-lg shadow-xs">
-      <h2 className="text-xl font-bold mb-4">Project Objectives</h2>
+    <div className="">
+      <h2 className="text-2xl">Project Objectives</h2>
 
       <TextareaInput
         label={objectivesSectionData.label}
@@ -55,13 +56,9 @@ export default function ObjectivesSection() {
         defaultValue={objectivesSectionData.defaultValue}
       />
 
-      <button
-        onClick={handleGenerateObjectives}
-        disabled={isLoading}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-700 disabled:bg-gray-400"
-      >
-        {isLoading ? "Generating..." : "Generate Objectives Section"}
-      </button>
+      <Button onClick={handleGenerateObjectives} disabled={isLoading}>
+        {isLoading ? "Generating..." : "Generate"}
+      </Button>
 
       {apiResponse && (
         <div className="mt-6 p-4 border rounded-sm bg-gray-50">

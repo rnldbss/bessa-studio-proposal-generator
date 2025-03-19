@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useEditableText } from "@/hooks/useEditableText";
-import EditableHeading from "./inputs/EditableHeading";
+import { useEditableTool } from "@/hooks/useEditableTool";
+import EditableText from "./inputs/EditableText";
 
 export default function Header() {
   const [companyName, setCompanyName] = useState("");
@@ -15,11 +15,11 @@ export default function Header() {
     saveValue,
     cancelEditing,
     setTempInputValue,
-  } = useEditableText();
+  } = useEditableTool();
 
   return (
     <div className="flex justify-between items-center px-1">
-      <EditableHeading
+      <EditableText
         label="Company name?"
         title="company"
         value={editingField === "company" ? tempInputValue : companyName}
@@ -32,7 +32,7 @@ export default function Header() {
         onCancel={cancelEditing}
         as="span"
       />
-      <EditableHeading
+      <EditableText
         label="Date?"
         title="date"
         value={editingField === "date" ? tempInputValue : proposalDate}
