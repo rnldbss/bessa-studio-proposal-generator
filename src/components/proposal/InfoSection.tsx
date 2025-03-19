@@ -3,7 +3,7 @@
 import { useState } from "react";
 import EditableField from "./inputs/EditableField";
 import EditableHeading from "./inputs/EditableHeading";
-import { useEditableField } from "../../hooks/useEditableText";
+import { useEditableText } from "../../hooks/useEditableText";
 
 export default function InfoSection() {
   // Info Section fields' state
@@ -64,11 +64,14 @@ export default function InfoSection() {
     saveValue,
     cancelEditing,
     setTempInputValue,
-  } = useEditableField();
+  } = useEditableText();
 
   return (
     <div>
       <EditableHeading
+        label="What's the proposal title?"
+        title="title"
+        className="text-3xl"
         value={editingField === "title" ? tempInputValue : infoSectionTitle}
         defaultValue="Website proposal"
         isEditing={editingField === "title"}

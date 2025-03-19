@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useEditableField() {
+export function useEditableText() {
   // Track current editing field and it's temporary value
   const [editingField, setEditingField] = useState<string | null>(null);
   const [tempInputValue, setTempInputValue] = useState("");

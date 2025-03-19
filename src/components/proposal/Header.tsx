@@ -1,12 +1,50 @@
-interface ProposalHeaderProps {
-  proposalDate: string;
-}
+"use client";
 
-export default function Header({ proposalDate }: ProposalHeaderProps) {
+import { useState } from "react";
+import { useEditableText } from "@/hooks/useEditableText";
+import EditableHeading from "./inputs/EditableHeading";
+
+export default function Header() {
+  const [companyName, setCompanyName] = useState("");
+  const [proposalDate, setProposalDate] = useState("");
+
+  const {
+    editingField,
+    tempInputValue,
+    startEditing,
+    saveValue,
+    cancelEditing,
+    setTempInputValue,
+  } = useEditableText();
+
   return (
     <div className="flex justify-between items-center px-1">
-      <span className="font-cal text-xl leading-0">Bessa Studio</span>
-      <span className="text-xs">{proposalDate || "Feb, 2025"}</span>
+      <EditableHeading
+        label="Company name?"
+        title="company"
+        value={editingField === "company" ? tempInputValue : companyName}
+        defaultValue="Bessa Studio"
+        className="font-cal text-xl"
+        isEditing={editingField === "company"}
+        onStartEdit={() => startEditing("company", companyName)}
+        onChange={setTempInputValue}
+        onSave={() => saveValue(setCompanyName)}
+        onCancel={cancelEditing}
+        as="span"
+      />
+      <EditableHeading
+        label="Date?"
+        title="date"
+        value={editingField === "date" ? tempInputValue : proposalDate}
+        defaultValue="Feb, 2025"
+        className="text-xs"
+        isEditing={editingField === "date"}
+        onStartEdit={() => startEditing("date", proposalDate)}
+        onChange={setTempInputValue}
+        onSave={() => saveValue(setProposalDate)}
+        onCancel={cancelEditing}
+        as="span"
+      />
     </div>
   );
 }

@@ -7,8 +7,11 @@ import { Pencil } from "lucide-react";
 interface EditableHeadingProps {
   value: string;
   defaultValue: string;
-  as?: "h1" | "h2" | "h3";
+  as?: "h1" | "h2" | "h3" | "span" | "p";
   isEditing: boolean;
+  className?: string;
+  title: string;
+  label: string;
   onStartEdit: () => void;
   onChange: (value: string) => void;
   onSave: () => void;
@@ -21,6 +24,9 @@ export default function EditableHeading({
   defaultValue,
   as: Heading = "h1",
   isEditing,
+  className = "",
+  title,
+  label,
   onStartEdit,
   onChange,
   onSave,
@@ -36,10 +42,10 @@ export default function EditableHeading({
     >
       {isEditing ? (
         <div className="flex flex-col gap-3 my-4">
-          <Heading className="text-3xl">{value || defaultValue}</Heading>
+          <Heading className={className}>{value || defaultValue}</Heading>
           <TextInput
-            title="Title"
-            label="What is the title of this proposal?"
+            title={title}
+            label={label}
             inputValue={value}
             onChange={onChange}
             defaultValue={defaultValue}
@@ -60,8 +66,8 @@ export default function EditableHeading({
           </div>
         </div>
       ) : (
-        <div className="flex justify-between items-center group">
-          <Heading className="text-3xl">{value || defaultValue}</Heading>
+        <div className="flex justify-between gap-2 items-center group">
+          <Heading className={className}>{value || defaultValue}</Heading>
           <Button
             size="icon"
             variant="outline"
