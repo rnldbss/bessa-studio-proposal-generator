@@ -15,6 +15,8 @@ interface EditableFieldProps {
   onSave: () => void;
   onCancel: () => void;
 }
+
+// FIX: Tab navigation is inexistent at the moment
 export default function EditableField({
   title,
   label,
@@ -49,6 +51,12 @@ export default function EditableField({
               inputValue={value}
               onChange={onChange}
               defaultValue={defaultValue}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  onSave();
+                }
+              }}
             />
             <div className="flex gap-2">
               <Button size="sm" onClick={onSave}>

@@ -6,6 +6,7 @@ interface TextInputProps {
   label: string;
   inputValue: string;
   onChange: (value: string) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   defaultValue: string;
   id?: string;
 }
@@ -15,6 +16,7 @@ export default function TextInput({
   label,
   inputValue,
   onChange,
+  onKeyDown,
   defaultValue,
   id = title.toLowerCase().replace(/[^a-z0-9]/g, "-"),
 }: TextInputProps) {
@@ -28,6 +30,7 @@ export default function TextInput({
         value={inputValue}
         onChange={(e) => onChange(e.target.value)}
         placeholder={inputValue || defaultValue}
+        onKeyDown={onKeyDown}
       />
     </div>
   );
