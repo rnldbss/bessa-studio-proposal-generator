@@ -45,7 +45,8 @@
   input,
   a,
   select,
-  button {
+  button,
+  textarea {
     @apply font-inter text-on-level-0;
   }
 }

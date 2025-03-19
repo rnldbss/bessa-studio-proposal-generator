@@ -19,7 +19,11 @@ export default function TextareaInput({
   const labelId = `${id}-label`;
 
   return (
-    <div role="group" aria-labelledby={labelId}>
+    <div
+      role="group"
+      aria-labelledby={labelId}
+      className="flex flex-col gap-2 px-1"
+    >
       <Label htmlFor={id} id={labelId}>
         {label}
       </Label>

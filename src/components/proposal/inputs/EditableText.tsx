@@ -71,7 +71,7 @@ export default function EditableText({
           <Button
             size="icon"
             variant="outline"
-            className="hover:bg-level-0 hidden group-hover:inline-flex hover:[&>svg]:stroke-accent hover:border-accent"
+            className="hover:bg-level-0 hidden cursor-pointer group-hover:inline-flex hover:[&>svg]:stroke-accent hover:border-accent"
             onClick={onStartEdit}
           >
             <Pencil className="h-3 w-3 stroke-on-level-1 transition-all" />

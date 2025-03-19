@@ -1,71 +1,46 @@
 "use client";
 
 import { useState } from "react";
-//import InputDisplay from "./inputs/InputDisplay";
-import TextareaInput from "./inputs/TextareaInput";
-import { Button } from "../ui/button";
+import { useEditableTool } from "@/hooks/useEditableTool";
+import EditableText from "./inputs/EditableText";
+import EditableBodySection from "./inputs/EditableBodyWithGPT.tsx";
 
 export default function ObjectivesSection() {
-  const [proposalObjectives, setProposalObjectives] = useState("");
-  const [apiResponse, setApiResponse] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [heading, setHeading] = useState("");
 
   const objectivesSectionData = {
     label: "What goals do you aim to achieve with your services?",
-    userInput: proposalObjectives,
-    inputHandler: setProposalObjectives,
     defaultValue:
       "The aim is to make Silver Springs Retreat a professional website that conveys its atmosphere and displays all the important information potential clients need when browsing while aligning with SEO best practices.",
   };
-
-  async function handleGenerateObjectives() {
-    setIsLoading(true);
-
-    try {
-      const res = await fetch("/api/generate-proposal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          section: "objectives",
-          userInput: proposalObjectives,
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error(`API returned status ${res.status}`);
-      }
-
-      const data = await res.json();
-      setApiResponse(data.content);
-    } catch (error) {
-      console.error("API Error:", error);
-      setApiResponse("Error generating proposal objectives. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const {
+    editingField,
+    tempInputValue,
+    startEditing,
+    saveValue,
+    cancelEditing,
+    setTempInputValue,
+  } = useEditableTool();
 
   return (
     <div className="">
-      <h2 className="text-2xl">Project Objectives</h2>
-
-      <TextareaInput
-        label={objectivesSectionData.label}
-        inputValue={proposalObjectives}
-        onChange={setProposalObjectives}
+      <EditableText
+        label="Section heading"
+        title="heading"
+        className="text-2xl"
+        value={editingField === "title" ? tempInputValue : heading}
+        defaultValue="Project Objectives"
+        isEditing={editingField === "title"}
+        onStartEdit={() => startEditing("title", heading)}
+        onChange={setTempInputValue}
+        onSave={() => saveValue(setHeading)}
+        onCancel={cancelEditing}
+        as="h2"
+      />
+      <EditableBodySection
+        section="objectives"
         defaultValue={objectivesSectionData.defaultValue}
       />
-
-      <Button onClick={handleGenerateObjectives} disabled={isLoading}>
-        {isLoading ? "Generating..." : "Generate"}
-      </Button>
-
-      {apiResponse && (
-        <div className="mt-6 p-4 border rounded-sm bg-gray-50">
-          <h3 className="font-semibold mb-2">Generated Objectives:</h3>
-          <div className="whitespace-pre-wrap">{apiResponse}</div>
-        </div>
-      )}
     </div>
   );
 }
