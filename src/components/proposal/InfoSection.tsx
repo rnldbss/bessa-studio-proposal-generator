@@ -3,6 +3,7 @@
 import { useState } from "react";
 import EditableField from "./inputs/EditableField";
 import EditableHeading from "./inputs/EditableHeading";
+import { useEditableField } from "../../hooks/useEditableText";
 
 export default function InfoSection() {
   // Info Section fields' state
@@ -12,10 +13,6 @@ export default function InfoSection() {
   const [infoSectionExpireDate, setInfoSectionExpireDate] = useState("");
   const [infoSectionAuthor, setInfoSectionAuthor] = useState("");
   const [infoSectionFor, setInfoSectionFor] = useState("");
-
-  // Track current editing field and it's temporary value
-  const [editingField, setEditingField] = useState<string | null>(null);
-  const [tempInputValue, setTempInputValue] = useState("");
 
   const infoSectionData = [
     {
@@ -60,23 +57,14 @@ export default function InfoSection() {
     },
   ];
 
-  // Save id and current value and mark field that started editing
-  // then set the current value into the temporary value
-  const startEditing = (id: string, currentValue: string) => {
-    setEditingField(id);
-    setTempInputValue(currentValue || "");
-  };
-
-  // Save the user input and end editing
-  const saveValue = (onUpdate: (value: string) => void) => {
-    onUpdate(tempInputValue);
-    setEditingField(null);
-  };
-
-  // Discard edits
-  const cancelEditing = () => {
-    setEditingField(null);
-  };
+  const {
+    editingField,
+    tempInputValue,
+    startEditing,
+    saveValue,
+    cancelEditing,
+    setTempInputValue,
+  } = useEditableField();
 
   return (
     <div>
