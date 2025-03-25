@@ -2,7 +2,7 @@ import Proposal from "../../components/proposal/proposal";
 
 export default function EditProposal() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen relative">
       <Proposal />
     </div>
   );

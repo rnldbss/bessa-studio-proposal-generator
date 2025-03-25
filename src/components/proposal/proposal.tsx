@@ -8,6 +8,7 @@ export default function Proposal() {
       <Header />
       <InfoSection />
       <ObjectivesSection />
+      <ObjectivesSection />
     </form>
   );
 }

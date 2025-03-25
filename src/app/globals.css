@@ -46,7 +46,16 @@
   a,
   select,
   button,
-  textarea {
+  textarea,
+  li {
     @apply font-inter text-on-level-0;
+  }
+
+  ul {
+    @apply list-disc ms-6;
+  }
+
+  ol {
+    @apply list-decimal ms-6;
   }
 }

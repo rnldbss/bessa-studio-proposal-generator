@@ -37,6 +37,7 @@ export default function ObjectivesSection() {
         onCancel={cancelEditing}
         as="h2"
       />
+
       <EditableBodySection
         section="objectives"
         defaultValue={objectivesSectionData.defaultValue}
