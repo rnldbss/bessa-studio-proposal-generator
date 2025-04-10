@@ -149,7 +149,7 @@ export default function EditableBodySection({
           </div>
         </>
       ) : (
-        <div className="hover:ring ring-accent px-1 py-1 rounded-sm group relative">
+        <div className="min-h-16 hover:ring ring-accent px-1 py-1 rounded-sm group/edit relative">
           <div
             className="prose max-w-none"
             dangerouslySetInnerHTML={{
@@ -182,7 +182,7 @@ export default function EditableBodySection({
           <Button
             size="icon"
             variant="outline"
-            className="hover:bg-level-0 hidden absolute cursor-pointer top-1 right-1 group-hover:inline-flex hover:[&>svg]:stroke-accent hover:border-accent"
+            className="hover:bg-level-0 hidden absolute cursor-pointer top-1 right-1 group-hover/edit:inline-flex hover:[&>svg]:stroke-accent hover:border-accent"
             onClick={() => {
               startEditing(section, outputText || defaultValue);
             }}

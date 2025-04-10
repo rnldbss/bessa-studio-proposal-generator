@@ -5,13 +5,12 @@ import { useEditableTool } from "@/hooks/useEditableTool";
 import EditableText from "./inputs/EditableText";
 import EditableBodySection from "./inputs/EditableBodyWithGPT.tsx";
 
-export default function ObjectivesSection() {
+export default function GPTGeneratedSection() {
   const [heading, setHeading] = useState("");
 
   const objectivesSectionData = {
-    label: "What goals do you aim to achieve with your services?",
-    defaultValue:
-      "The aim is to make Silver Springs Retreat a professional website that conveys its atmosphere and displays all the important information potential clients need when browsing while aligning with SEO best practices.",
+    label: "Give some context to GPT generate this section",
+    defaultValue: "",
   };
   const {
     editingField,
@@ -23,7 +22,7 @@ export default function ObjectivesSection() {
   } = useEditableTool();
 
   return (
-    <div className="">
+    <div className="relative">
       <EditableText
         label="Section heading"
         title="heading"
@@ -42,6 +41,7 @@ export default function ObjectivesSection() {
         section="objectives"
         defaultValue={objectivesSectionData.defaultValue}
       />
+      <div className="w-0.5 h-full absolute -right-2.5 top-0 bg-level-3 hidden group-hover/delete:block" />
     </div>
   );
 }

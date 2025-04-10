@@ -66,12 +66,12 @@ export default function EditableText({
           </div>
         </div>
       ) : (
-        <div className="flex justify-between gap-2 items-center group">
+        <div className="flex justify-between gap-2 items-center group/edit">
           <Heading className={className}>{value || defaultValue}</Heading>
           <Button
             size="icon"
             variant="outline"
-            className="hover:bg-level-0 hidden cursor-pointer group-hover:inline-flex hover:[&>svg]:stroke-accent hover:border-accent"
+            className="hover:bg-level-0 hidden cursor-pointer group-hover/edit:inline-flex hover:[&>svg]:stroke-accent hover:border-accent"
             onClick={onStartEdit}
           >
             <Pencil className="h-3 w-3 stroke-on-level-1 transition-all" />
