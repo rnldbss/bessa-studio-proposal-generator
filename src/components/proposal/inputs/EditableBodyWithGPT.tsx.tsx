@@ -104,8 +104,12 @@ export default function EditableBodySection({
       setOutputText(data.content);
     } catch (error) {
       console.error("API Error:", error);
-      setTempInputValue("Error generating content.");
-      setOutputText("Error generating content.");
+      setTempInputValue(
+        "I can't make the API call available to everyone. If you're interested in seeing it in action, email me at ronald@bessa.studio."
+      );
+      setOutputText(
+        "I can't make the API call available to everyone. If you're interested in seeing it in action, email me at ronald@bessa.studio."
+      );
     } finally {
       setIsLoading(false);
     }
