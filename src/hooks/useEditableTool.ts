@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const maxChars = 1200;
+const maxChars = 1800;
 
 export function useEditableTool() {
   // Track current editing field and it's temporary value
