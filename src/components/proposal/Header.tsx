@@ -4,7 +4,11 @@ import { useState } from "react";
 import { useEditableTool } from "@/hooks/useEditableTool";
 import EditableText from "./inputs/EditableText";
 
-export default function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export default function Header({ className = "" }: HeaderProps) {
   const [companyName, setCompanyName] = useState("");
   const [proposalDate, setProposalDate] = useState("");
 
@@ -18,7 +22,7 @@ export default function Header() {
   } = useEditableTool();
 
   return (
-    <div className="flex justify-between items-center px-1">
+    <div className={`flex justify-between items-center px-1 ${className}`}>
       <EditableText
         label="Company name?"
         title="company"

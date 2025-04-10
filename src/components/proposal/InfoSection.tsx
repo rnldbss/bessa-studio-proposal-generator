@@ -5,7 +5,11 @@ import EditableField from "./inputs/EditableField";
 import EditableText from "./inputs/EditableText";
 import { useEditableTool } from "../../hooks/useEditableTool";
 
-export default function InfoSection() {
+interface InfoSectionProps {
+  className?: string;
+}
+
+export default function InfoSection({ className = " " }: InfoSectionProps) {
   // Info Section fields' state
   const [infoSectionTitle, setInfoSectionTitle] = useState("");
   const [infoSectionService, setInfoSectionService] = useState("");
@@ -67,7 +71,7 @@ export default function InfoSection() {
   } = useEditableTool();
 
   return (
-    <div>
+    <div className={`${className}`}>
       <EditableText
         label="What's the proposal title?"
         title="title"

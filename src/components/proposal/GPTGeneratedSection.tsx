@@ -5,7 +5,13 @@ import { useEditableTool } from "@/hooks/useEditableTool";
 import EditableText from "./inputs/EditableText";
 import EditableBodySection from "./inputs/EditableBodyWithGPT.tsx";
 
-export default function GPTGeneratedSection() {
+interface GPTGeneratedSectionProps {
+  className?: string;
+}
+
+export default function GPTGeneratedSection({
+  className = "",
+}: GPTGeneratedSectionProps) {
   const [heading, setHeading] = useState("");
 
   const objectivesSectionData = {
@@ -22,7 +28,7 @@ export default function GPTGeneratedSection() {
   } = useEditableTool();
 
   return (
-    <div className="relative">
+    <div className={`${className}`}>
       <EditableText
         label="Section heading"
         title="heading"
