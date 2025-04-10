@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { useEditableTool } from "@/hooks/useEditableTool";
 import EditableText from "./inputs/EditableText";
-import EditableBodySection from "./inputs/EditableBodyWithGPT.tsx";
+//import EditableBodyWithGPT from "./inputs/EditableBodyWithGPT.tsx";
+import dynamic from "next/dynamic";
+const EditableBodyWithGPT = dynamic(
+  () => import("../proposal/inputs/EditableBodyWithGPT.tsx"),
+  { ssr: false }
+);
 
 interface GPTGeneratedSectionProps {
   className?: string;
@@ -43,7 +48,7 @@ export default function GPTGeneratedSection({
         as="h2"
       />
 
-      <EditableBodySection
+      <EditableBodyWithGPT
         section="objectives"
         defaultValue={objectivesSectionData.defaultValue}
       />

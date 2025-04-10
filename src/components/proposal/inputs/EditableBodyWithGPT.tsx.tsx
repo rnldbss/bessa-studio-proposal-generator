@@ -8,15 +8,15 @@ import { useEditableTool } from "@/hooks/useEditableTool";
 import { Pencil } from "lucide-react";
 import DOMPurify from "dompurify";
 
-interface EditableBodySectionProps {
+interface EditableBodyWithGPTProps {
   section: string;
   defaultValue: string;
 }
 
-export default function EditableBodySection({
+export default function EditableBodyWithGPT({
   section,
   defaultValue,
-}: EditableBodySectionProps) {
+}: EditableBodyWithGPTProps) {
   const [outputText, setOutputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 

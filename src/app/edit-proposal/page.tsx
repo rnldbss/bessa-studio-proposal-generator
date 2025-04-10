@@ -1,4 +1,3 @@
-"use client";
 import Proposal from "../../components/proposal/Proposal";
 
 export default function EditProposal() {
