@@ -10,6 +10,7 @@ export default function DeleteButton({ onClick }: DeleteButtonProps) {
     <div className="relative h-full w-full px-2">
       <div className="h-full w-px bg-level-3  hidden group-hover/row:flex" />
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         className={`absolute items-center justify-center top-1/2 right-0 group/button -translate-y-1/2 hover:!bg-red-400 hidden group-hover/row:flex`}
