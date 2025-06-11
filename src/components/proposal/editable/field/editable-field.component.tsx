@@ -1,20 +1,10 @@
 "use client";
 
-import TextInput from "./TextInput";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
+import { LabeledInput } from "@/components/proposal/primitives/labeled-input";
 
-interface EditableFieldProps {
-  title: string;
-  label: string;
-  value: string;
-  defaultValue: string;
-  isEditing: boolean;
-  onStartEdit: () => void;
-  onChange: (value: string) => void;
-  onSave: () => void;
-  onCancel: () => void;
-}
+import type { EditableFieldProps } from "./editable-field.model";
 
 // FIX: Tab navigation is inexistent at the moment
 export default function EditableField({
@@ -45,7 +35,7 @@ export default function EditableField({
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            <TextInput
+            <LabeledInput
               title={title}
               label={label}
               inputValue={value}

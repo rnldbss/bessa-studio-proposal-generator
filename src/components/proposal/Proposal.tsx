@@ -1,8 +1,8 @@
 "use client";
 
+import AddButton from "./buttons/add-section/add-section-button.component";
 import Form from "./Form";
-import Row from "./Row";
-import AddButton from "./buttons/AddButton";
+import Row from "./layout/row/layout-row.component";
 import { useState } from "react";
 
 export default function Proposal() {

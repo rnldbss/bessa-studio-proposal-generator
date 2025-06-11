@@ -1,14 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useEditableTool } from "@/hooks/useEditableTool";
-import EditableText from "./inputs/EditableText";
+import { useState } from "react";
+import { EditableHeading } from "@/components/proposal/editable";
+import type { HeaderData } from "./section-header.model";
 
-interface HeaderProps {
-  className?: string;
-}
-
-export default function Header({ className = "" }: HeaderProps) {
+export default function SectionHeader({ className = "" }: HeaderData) {
   const [companyName, setCompanyName] = useState("");
   const [proposalDate, setProposalDate] = useState("");
 
@@ -23,7 +20,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
   return (
     <div className={`flex justify-between items-center px-1 ${className}`}>
-      <EditableText
+      <EditableHeading
         label="Company name?"
         title="company"
         value={editingField === "company" ? tempInputValue : companyName}
@@ -36,7 +33,7 @@ export default function Header({ className = "" }: HeaderProps) {
         onCancel={cancelEditing}
         as="span"
       />
-      <EditableText
+      <EditableHeading
         label="Date?"
         title="date"
         value={editingField === "date" ? tempInputValue : proposalDate}

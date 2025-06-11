@@ -8,15 +8,12 @@ import { useEditableTool } from "@/hooks/useEditableTool";
 import { Pencil } from "lucide-react";
 import DOMPurify from "dompurify";
 
-interface EditableBodyWithGPTProps {
-  section: string;
-  defaultValue: string;
-}
+import type { EditableMarkdownProps } from "./editable-markdown.model";
 
-export default function EditableBodyWithGPT({
+export default function EditableMarkdown({
   section,
   defaultValue,
-}: EditableBodyWithGPTProps) {
+}: EditableMarkdownProps) {
   const [outputText, setOutputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,7 +44,7 @@ export default function EditableBodyWithGPT({
         "|",
         "link",
         "image",
-      ] as const, // Use as const to help TypeScript
+      ] as const,
       spellChecker: false,
       minHeight: "300px",
       previewRender: (markdown: string) => {

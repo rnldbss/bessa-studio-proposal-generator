@@ -1,17 +1,8 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import type { LabeledInputProps } from "./labeled-input.model";
 
-interface TextInputProps {
-  title: string;
-  label: string;
-  inputValue: string;
-  onChange: (value: string) => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  defaultValue: string;
-  id?: string;
-}
-
-export default function TextInput({
+export default function LabeledInput({
   title,
   label,
   inputValue,
@@ -19,7 +10,7 @@ export default function TextInput({
   onKeyDown,
   defaultValue,
   id = title.toLowerCase().replace(/[^a-z0-9]/g, "-"),
-}: TextInputProps) {
+}: LabeledInputProps) {
   const titleId = `${id}-label`;
 
   return (

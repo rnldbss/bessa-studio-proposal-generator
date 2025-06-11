@@ -1,11 +1,8 @@
 import { X } from "lucide-react";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
+import type {  DeleteSectionButtonEvents } from "./delete-section-button.model";
 
-interface DeleteButtonProps {
-  onClick: () => void;
-}
-
-export default function DeleteButton({ onClick }: DeleteButtonProps) {
+export default function DeleteButton({ onClick }: DeleteSectionButtonEvents) {
   return (
     <div className="relative h-full w-full px-2">
       <div className="h-full w-px bg-level-3  hidden group-hover/row:flex" />

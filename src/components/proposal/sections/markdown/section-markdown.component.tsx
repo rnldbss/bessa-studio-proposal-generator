@@ -1,22 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { EditableHeading, EditableMarkdown } from "@/components/proposal/editable";
+//import dynamic from "next/dynamic";
 import { useEditableTool } from "@/hooks/useEditableTool";
-import EditableText from "./inputs/EditableText";
-//import EditableBodyWithGPT from "./inputs/EditableBodyWithGPT.tsx";
-import dynamic from "next/dynamic";
-const EditableBodyWithGPT = dynamic(
-  () => import("../proposal/inputs/EditableBodyWithGPT.tsx"),
-  { ssr: false }
-);
+import { useState } from "react";
+// const EditableMarkdown = dynamic(
+//   () => import("@/components/proposal/editable/markdown"),
+//   { ssr: false }
+// );
 
-interface GPTGeneratedSectionProps {
-  className?: string;
-}
+import type { SectionMarkdownData } from "./section-markdown.model";
 
-export default function GPTGeneratedSection({
+export default function SectionMarkdown({
   className = "",
-}: GPTGeneratedSectionProps) {
+}: SectionMarkdownData) {
   const [heading, setHeading] = useState("");
 
   const objectivesSectionData = {
@@ -34,7 +31,7 @@ export default function GPTGeneratedSection({
 
   return (
     <div className={`${className}`}>
-      <EditableText
+      <EditableHeading
         label="Section heading"
         title="heading"
         className="text-2xl"
@@ -48,7 +45,7 @@ export default function GPTGeneratedSection({
         as="h2"
       />
 
-      <EditableBodyWithGPT
+      <EditableMarkdown
         section="objectives"
         defaultValue={objectivesSectionData.defaultValue}
       />

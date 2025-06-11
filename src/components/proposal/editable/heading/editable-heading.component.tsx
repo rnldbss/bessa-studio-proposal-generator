@@ -1,25 +1,13 @@
 "use client";
 
-import TextInput from "./TextInput";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
+import { LabeledInput } from "@/components/proposal/primitives/labeled-input";
 
-interface EditableTextProps {
-  value: string;
-  defaultValue: string;
-  as?: "h1" | "h2" | "h3" | "span" | "p";
-  isEditing: boolean;
-  className?: string;
-  title: string;
-  label: string;
-  onStartEdit: () => void;
-  onChange: (value: string) => void;
-  onSave: () => void;
-  onCancel: () => void;
-}
+import type { EditableHeadingProps } from "./editable-heading.model";
 
 // FIX: Tab navigation is inexistent at the moment
-export default function EditableText({
+export default function EditableHeading({
   value,
   defaultValue,
   as: Heading = "h1",
@@ -31,7 +19,7 @@ export default function EditableText({
   onChange,
   onSave,
   onCancel,
-}: EditableTextProps) {
+}: EditableHeadingProps) {
   return (
     <div
       className={`px-1 py-0.5 rounded-sm group ${
@@ -43,7 +31,7 @@ export default function EditableText({
       {isEditing ? (
         <div className="flex flex-col gap-3 my-4">
           <Heading className={className}>{value || defaultValue}</Heading>
-          <TextInput
+          <LabeledInput
             title={title}
             label={label}
             inputValue={value}

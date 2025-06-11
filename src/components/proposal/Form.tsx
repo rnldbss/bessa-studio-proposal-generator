@@ -1,11 +1,8 @@
 "use client";
 
-import Header from "./Header";
-import InfoSection from "./InfoSection";
-import GPTGeneratedSection from "./GPTGeneratedSection";
-import DeleteButton from "./buttons/DeleteButton";
-import Row from "./Row";
-
+import { DeleteSectionButton } from "@/components/proposal/buttons";
+import { SectionHeader, SectionMetadata, SectionMarkdown } from "@/components/proposal/sections";
+import { LayoutRow } from "@/components/proposal/layout";
 interface FormProps {
   onClickDelete: () => void;
   sectionsCount: number;
@@ -14,17 +11,17 @@ interface FormProps {
 export default function Form({ onClickDelete, sectionsCount }: FormProps) {
   return (
     <form className="flex flex-col gap-8">
-      <Row>
-        <Header className="col-start-2 col-end-3" />
-      </Row>
-      <Row>
-        <InfoSection className="col-start-2 col-end-3" />
-      </Row>
+      <LayoutRow>
+        <SectionHeader className="col-start-2 col-end-3" />
+      </LayoutRow>
+      <LayoutRow>
+        <SectionMetadata className="col-start-2 col-end-3" />
+      </LayoutRow>
       {Array.from({ length: sectionsCount }).map((i, index) => (
-        <Row key={index}>
-          <GPTGeneratedSection className="col-start-2 col-end-3" />
-          <DeleteButton onClick={onClickDelete} />
-        </Row>
+        <LayoutRow key={index}>
+          <SectionMarkdown className="col-start-2 col-end-3" />
+          <DeleteSectionButton onClick={onClickDelete} />
+        </LayoutRow>
       ))}
     </form>
   );

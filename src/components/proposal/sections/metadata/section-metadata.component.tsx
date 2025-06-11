@@ -1,15 +1,11 @@
 "use client";
 
+import { EditableField, EditableHeading } from "@/components/proposal/editable";
+import { useEditableTool } from "../../../../hooks/useEditableTool";
 import { useState } from "react";
-import EditableField from "./inputs/EditableField";
-import EditableText from "./inputs/EditableText";
-import { useEditableTool } from "../../hooks/useEditableTool";
+import type { SectionMetadataData } from "./section-metadata.model";
 
-interface InfoSectionProps {
-  className?: string;
-}
-
-export default function InfoSection({ className = " " }: InfoSectionProps) {
+export default function SectionMetadata({ className = " " }: SectionMetadataData) {
   // Info Section fields' state
   const [infoSectionTitle, setInfoSectionTitle] = useState("");
   const [infoSectionService, setInfoSectionService] = useState("");
@@ -72,7 +68,7 @@ export default function InfoSection({ className = " " }: InfoSectionProps) {
 
   return (
     <div className={`${className}`}>
-      <EditableText
+      <EditableHeading
         label="What's the proposal title?"
         title="title"
         className="text-3xl"

@@ -1,21 +1,15 @@
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-interface TextareaInputProps {
-  label: string;
-  inputValue: string;
-  onChange: (value: string) => void;
-  defaultValue: string;
-  id?: string;
-}
+import type { LabeledTextareaProps } from "./labeled-textarea.model";
 
-export default function TextareaInput({
+export default function LabeledTextarea({
   label,
   inputValue,
   onChange,
   defaultValue,
   id = label.toLowerCase().replace(/[^a-z0-9]/g, "-"),
-}: TextareaInputProps) {
+}: LabeledTextareaProps) {
   const labelId = `${id}-label`;
 
   return (
