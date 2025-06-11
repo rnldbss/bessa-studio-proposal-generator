@@ -1,20 +1,25 @@
 "use client";
-import { useState, useMemo } from "react";
-import SimpleMDE from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
+import { useState, useMemo, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { marked } from "marked";
 import { Button } from "@/components/ui/button";
 import { useEditableTool } from "@/hooks/useEditableTool";
 import { Pencil } from "lucide-react";
-import DOMPurify from "dompurify";
+import type DOMPurify from "dompurify";
 import { 
   generateMarkdownContent,
   getPromptSuggestionForSection,
   isValidSection,
   type GenerateContentRequest 
 } from './editable-markdown.api';
+import '@/styles/easymde.css';
 
 import type { EditableMarkdownProps } from "./editable-markdown.types";
+
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+  loading: () => <div className="h-[300px] bg-level-0 rounded-md animate-pulse" />
+});
 
 export default function EditableMarkdown({
   section,
@@ -23,6 +28,7 @@ export default function EditableMarkdown({
   const [outputText, setOutputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [domPurify, setDomPurify] = useState<typeof DOMPurify | null>(null);
 
   const {
     editingField,
@@ -36,6 +42,13 @@ export default function EditableMarkdown({
   } = useEditableTool();
 
   const isEditing = editingField === section;
+
+  useEffect(() => {
+    // Load DOMPurify
+    import('dompurify').then((module) => {
+      setDomPurify(module.default);
+    });
+  }, []);
 
   // Memoize editor options to prevent unnecessary re-renders
   const editorOptions = useMemo(
@@ -56,33 +69,35 @@ export default function EditableMarkdown({
       minHeight: "300px",
       previewRender: (markdown: string) => {
         try {
-          return DOMPurify.sanitize(marked.parse(markdown) as string, {
-            ALLOWED_TAGS: [
-              "p",
-              "br",
-              "strong",
-              "em",
-              "u",
-              "h1",
-              "h2",
-              "h3",
-              "h4",
-              "h5",
-              "h6",
-              "ul",
-              "ol",
-              "li",
-              "blockquote",
-              "a",
-            ],
-            ALLOWED_ATTR: ["href", "title", "target"],
-          });
+          return domPurify 
+            ? domPurify.sanitize(marked.parse(markdown) as string, {
+                ALLOWED_TAGS: [
+                  "p",
+                  "br",
+                  "strong",
+                  "em",
+                  "u",
+                  "h1",
+                  "h2",
+                  "h3",
+                  "h4",
+                  "h5",
+                  "h6",
+                  "ul",
+                  "ol",
+                  "li",
+                  "blockquote",
+                  "a",
+                ],
+                ALLOWED_ATTR: ["href", "title", "target"],
+              })
+            : marked.parse(markdown) as string;
         } catch {
           return markdown;
         }
       },
     }),
-    []
+    [domPurify]
   );
 
   // Configure marked to use synchronous parsing
@@ -170,30 +185,29 @@ export default function EditableMarkdown({
           <div
             className="prose max-w-none"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(
-                marked.parse(outputText || defaultValue) as string,
-                {
-                  ALLOWED_TAGS: [
-                    "p",
-                    "br",
-                    "strong",
-                    "em",
-                    "u",
-                    "h1",
-                    "h2",
-                    "h3",
-                    "h4",
-                    "h5",
-                    "h6",
-                    "ul",
-                    "ol",
-                    "li",
-                    "blockquote",
-                    "a",
-                  ],
-                  ALLOWED_ATTR: ["href", "title", "target"],
-                }
-              ),
+              __html: domPurify
+                ? domPurify.sanitize(marked.parse(outputText || defaultValue) as string, {
+                    ALLOWED_TAGS: [
+                      "p",
+                      "br",
+                      "strong",
+                      "em",
+                      "u",
+                      "h1",
+                      "h2",
+                      "h3",
+                      "h4",
+                      "h5",
+                      "h6",
+                      "ul",
+                      "ol",
+                      "li",
+                      "blockquote",
+                      "a",
+                    ],
+                    ALLOWED_ATTR: ["href", "title", "target"],
+                  })
+                : marked.parse(outputText || defaultValue) as string,
             }}
           />
           <Button

@@ -1,4 +1,4 @@
-import Proposal from "../../components/proposal/Proposal";
+import Proposal from "@/components/proposal/Proposal";
 
 export default function EditProposal() {
   return (
