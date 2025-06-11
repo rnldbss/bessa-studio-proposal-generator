@@ -1,13 +1,14 @@
 "use client";
 
-import { EditableHeading, EditableMarkdown } from "@/components/proposal/editable";
-//import dynamic from "next/dynamic";
+import { EditableHeading } from "@/components/proposal/editable";
+import dynamic from "next/dynamic";
 import { useEditableTool } from "@/hooks/useEditableTool";
 import { useState } from "react";
-// const EditableMarkdown = dynamic(
-//   () => import("@/components/proposal/editable/markdown"),
-//   { ssr: false }
-// );
+
+const EditableMarkdown = dynamic(
+  () => import("@/components/proposal/editable/markdown/editable-markdown.component"),
+  { ssr: false }
+);
 
 import type { SectionMarkdownData } from "./section-markdown.types";
 
