@@ -1,9 +1,9 @@
 "use client";
 
-import { EditableHeading } from "@/components/proposal/editable";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useEditableTool } from "@/hooks/useEditableTool";
-import { useState } from "react";
+import { EditableHeading } from "@/components/proposal/editable";
 
 const EditableMarkdown = dynamic(
   () => import("@/components/proposal/editable/markdown/editable-markdown.component"),
