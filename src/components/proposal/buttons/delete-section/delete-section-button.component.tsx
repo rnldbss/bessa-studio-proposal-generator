@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type {  DeleteSectionButtonEvents } from "./delete-section-button.model";
+import type {  DeleteSectionButtonEvents } from "./delete-section-button.types";
 
 export default function DeleteButton({ onClick }: DeleteSectionButtonEvents) {
   return (

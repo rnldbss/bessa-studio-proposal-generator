@@ -3,7 +3,7 @@
 import { EditableField, EditableHeading } from "@/components/proposal/editable";
 import { useEditableTool } from "../../../../hooks/useEditableTool";
 import { useState } from "react";
-import type { SectionMetadataData } from "./section-metadata.model";
+import type { SectionMetadataData } from "./section-metadata.types";
 
 export default function SectionMetadata({ className = " " }: SectionMetadataData) {
   // Info Section fields' state

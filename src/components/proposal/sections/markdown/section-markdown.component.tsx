@@ -9,7 +9,7 @@ import { useState } from "react";
 //   { ssr: false }
 // );
 
-import type { SectionMarkdownData } from "./section-markdown.model";
+import type { SectionMarkdownData } from "./section-markdown.types";
 
 export default function SectionMarkdown({
   className = "",

@@ -7,8 +7,14 @@ import { Button } from "@/components/ui/button";
 import { useEditableTool } from "@/hooks/useEditableTool";
 import { Pencil } from "lucide-react";
 import DOMPurify from "dompurify";
+import { 
+  generateMarkdownContent,
+  getPromptSuggestionForSection,
+  isValidSection,
+  type GenerateContentRequest 
+} from './editable-markdown.api';
 
-import type { EditableMarkdownProps } from "./editable-markdown.model";
+import type { EditableMarkdownProps } from "./editable-markdown.types";
 
 export default function EditableMarkdown({
   section,
@@ -16,6 +22,7 @@ export default function EditableMarkdown({
 }: EditableMarkdownProps) {
   const [outputText, setOutputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     editingField,
@@ -86,31 +93,32 @@ export default function EditableMarkdown({
   });
 
   const handleGenerateContent = async () => {
+    if (!isValidSection(section)) {
+      setError('Invalid section type');
+      return;
+    }
+
     setIsLoading(true);
+    setError(null);
+
     try {
-      const res = await fetch("/api/generate-proposal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          section,
-          userInput: tempInputValue,
-        }),
-      });
-      const data = await res.json();
-      setTempInputValue(data.content);
-      setOutputText(data.content);
-    } catch (error) {
-      console.error("API Error:", error);
-      setTempInputValue(
-        "I can't make the API call available to everyone. If you're interested in seeing it in action, email me at ronald@bessa.studio."
-      );
-      setOutputText(
-        "I can't make the API call available to everyone. If you're interested in seeing it in action, email me at ronald@bessa.studio."
-      );
+      const request: GenerateContentRequest = {
+        section,
+        userInput: tempInputValue
+      };
+
+      const result = await generateMarkdownContent(request);
+      setTempInputValue(result.content);
+      setOutputText(result.content);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to generate content');
     } finally {
       setIsLoading(false);
     }
   };
+
+  // Show prompt suggestion
+  const promptSuggestion = getPromptSuggestionForSection(section);
 
   return (
     <div>
@@ -147,6 +155,14 @@ export default function EditableMarkdown({
             <Button size="sm" variant="outline" onClick={cancelEditing}>
               Cancel
             </Button>
+          </div>
+          {error && (
+            <div className="text-red-500 text-sm mt-2">
+              {error}
+            </div>
+          )}
+          <div className="text-sm text-gray-500 mt-2">
+            Suggestion: {promptSuggestion}
           </div>
         </>
       ) : (

@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { LabeledInputProps } from "./labeled-input.model";
+import type { LabeledInputProps } from "./labeled-input.types";
 
 export default function LabeledInput({
   title,

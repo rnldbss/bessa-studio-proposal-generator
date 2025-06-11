@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { LabeledInput } from "@/components/proposal/primitives/labeled-input";
 
-import type { EditableHeadingProps } from "./editable-heading.model";
+import type { EditableHeadingProps } from "./editable-heading.types";
 
 // FIX: Tab navigation is inexistent at the moment
 export default function EditableHeading({
