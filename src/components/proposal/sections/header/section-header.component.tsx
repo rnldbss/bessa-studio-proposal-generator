@@ -3,7 +3,7 @@
 import { useEditableTool } from "@/hooks/useEditableTool";
 import { useState } from "react";
 import { EditableHeading } from "@/components/proposal/editable";
-import type { HeaderData } from "./section-header.model";
+import type { HeaderData } from "./section-header.types";
 
 export default function SectionHeader({ className = "" }: HeaderData) {
   const [companyName, setCompanyName] = useState("");

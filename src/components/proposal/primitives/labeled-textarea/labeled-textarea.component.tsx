@@ -1,7 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-import type { LabeledTextareaProps } from "./labeled-textarea.model";
+import type { LabeledTextareaProps } from "./labeled-textarea.types";
 
 export default function LabeledTextarea({
   label,

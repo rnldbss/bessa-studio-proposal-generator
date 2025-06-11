@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { LabeledInput } from "@/components/proposal/primitives/labeled-input";
 
-import type { EditableFieldProps } from "./editable-field.model";
+import type { EditableFieldProps } from "./editable-field.types";
 
 // FIX: Tab navigation is inexistent at the moment
 export default function EditableField({

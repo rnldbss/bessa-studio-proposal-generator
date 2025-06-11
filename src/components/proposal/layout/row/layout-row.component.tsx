@@ -1,4 +1,4 @@
-import type { RowData } from "./layout-row.model";
+import type { RowData } from "./layout-row.types";
 
 export default function LayoutRow({ children }: RowData) {
   return (
